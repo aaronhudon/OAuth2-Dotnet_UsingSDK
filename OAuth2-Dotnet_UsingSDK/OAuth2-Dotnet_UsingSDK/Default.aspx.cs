@@ -93,7 +93,7 @@ namespace OAuth2_Dotnet_UsingSDK
             {
                 if (Request.QueryString.Count > 0)
                 {
-                    //Map the querytsring param values to Authorize response to get State and Code
+                    //Map the querystring param values to Authorize response to get State and Code
                     var response = new AuthorizeResponse(Request.QueryString.ToString());
 
 
@@ -107,7 +107,7 @@ namespace OAuth2_Dotnet_UsingSDK
                         incoming_state = response.State;
                         if (dictionary.TryGetValue("CSRF", out CSRF))
                         {
-                            //saave the state(CSRF token/Campaign Id/Tracking Id) in session to verify after Oauth2 Callback. This is just for reference. 
+                            //save the state(CSRF token/Campaign Id/Tracking Id) in session to verify after Oauth2 Callback. This is just for reference. 
                             //actual CSRF handling should be done as per security standards in some hidden fields or encrypted permanent store
 
                             if (CSRF == incoming_state)
@@ -123,8 +123,6 @@ namespace OAuth2_Dotnet_UsingSDK
                                         dictionary.Add("realmId", realmId);
                                     }
                                 }
-
-
 
                                 //extract the code
                                 if (response.Code != null)
@@ -149,7 +147,6 @@ namespace OAuth2_Dotnet_UsingSDK
                             {
                                 output("Invalid State");
                                 dictionary.Clear();
-
                             }
                         }
                     }
